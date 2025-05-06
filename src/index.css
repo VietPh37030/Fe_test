@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@font-face {
+    font-family: 'MyFont';
+    src: url('/fonts/Harley.otf') format('truetype');
+  }
+  
