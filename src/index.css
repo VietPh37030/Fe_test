@@ -3,4 +3,12 @@
     font-family: 'MyFont';
     src: url('/fonts/Harley.otf') format('truetype');
   }
+  @font-face {
+    font-family: 'MyFont2';
+    src: url('/fonts/Monterat-Thin.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'MyFont3';
+    src: url('/fonts/Staaliche.ttf') format('truetype');
+  }
   

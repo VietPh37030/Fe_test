@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Bg_hero from '../../public/img/bg-hero.png';
-import logo from '../../public/img/logo2.png';
+import logo from '../../public/img/h.png';
 
 const Hero = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,25 +29,46 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    // Header hover animation
+    // Header hover animation chỉ khi đã scroll xuống
     const header = headerRef.current;
-    if (header) {
-      header.addEventListener("mouseenter", () => {
-        gsap.to(header, {
-          backgroundColor: "rgba(255, 255, 255, 1)",
-          boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-          duration: 0.3,
-        });
-      });
-      header.addEventListener("mouseleave", () => {
+    let isScrolled = false;
+    const handleScroll = () => {
+      isScrolled = window.scrollY > 50;
+      if (!isScrolled) {
         gsap.to(header, {
           backgroundColor: "rgba(0, 0, 0, 0)",
           boxShadow: "none",
           duration: 0.3,
         });
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    if (header) {
+      header.addEventListener("mouseenter", () => {
+        if (window.scrollY > 50) {
+          gsap.to(header, {
+            backgroundColor: "rgba(255, 255, 255, 1)",
+            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+            duration: 0.3,
+          });
+        }
+      });
+      header.addEventListener("mouseleave", () => {
+        if (window.scrollY > 50) {
+          gsap.to(header, {
+            backgroundColor: "rgba(0, 0, 0, 0)",
+            boxShadow: "none",
+            duration: 0.3,
+          });
+        }
       });
     }
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
+  useEffect(() => {
     // Buy Now button hover animation
     if (buyNowRef.current && underlineRef.current) {
       const button = buyNowRef.current;
@@ -109,7 +130,7 @@ const Hero = () => {
       <header
          ref={headerRef}
          className="fixed w-full flex justify-between items-center p-4 z-50 transition-all duration-300"
-         style={{ top: '50px' }} // Đặt top để tạo khoảng cách từ đầu trang
+         style={{ top: '50px' }}
       >
         <div ref={logoRef} className="transition-opacity duration-300">
           <img src={logo} alt="logo" className="w-10 h-10" />
@@ -117,7 +138,7 @@ const Hero = () => {
         <div className="relative">
           <button
             ref={buyNowRef}
-            className="relative bg-transparent hover:bg-white hover:text-black text-black font-bold uppercase tracking-wider py-2 px-4 transition duration-300"
+            className="relative text-black font-bold uppercase tracking-wider py-2 px-4 transition duration-300"
           >
             BUY Now
             <span
