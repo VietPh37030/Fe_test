@@ -51,8 +51,8 @@ const WooCommerce = () => {
     <div className="flex flex-col items-center min-h-screen mb-20" style={{background:"#f7f7f7"}}>
       {/* Header */}
       <div className="text-center py-16 max-w-3xl mx-auto">
-        <h1 className="text-5xl text-gray-400 font-light italic mb-2">Sell Your Merch</h1>
-        <h2 className="text-xl font-semibold tracking-wider uppercase mb-6">WOOCOMMERCE SHOP</h2>
+        <h1 className="text-[95px] text-gray-400 font-light italic mb-2" style={{fontFamily:'MyFont'}}>Sell Your Merch</h1>
+        <h2 className="text-xl font-semibold tracking-wider uppercase mb-6" style={{fontFamily:'MyFont3'}}>WOOCOMMERCE SHOP</h2>
         <p className="text-gray-600 px-4">
           Sell your merch online using the most powerful and secure e-commerce WordPress theme: WooCommerce. Herion is built 
           to integrate WooCommerce smoothly in its design.

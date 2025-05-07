@@ -1,5 +1,20 @@
 import React from 'react';
 import { Paintbrush, RefreshCw, Sliders, Download, Headphones, Clock, MapPin, LayoutTemplate } from "lucide-react";
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
 
 const FeaturesSection = () => {
   const features = [
@@ -80,15 +95,25 @@ const FeaturesSection = () => {
   return (
     <section className="py-24 bg-white text-black">
       <div className="container mx-auto px-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {features.map((feature, index) => (
-            <div key={index} className="flex flex-col items-start">
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="flex flex-col items-start bg-white rounded-xl p-6 shadow-md h-full"
+            >
               <div className="mb-4 text-primary">{feature.icon}</div>
               <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

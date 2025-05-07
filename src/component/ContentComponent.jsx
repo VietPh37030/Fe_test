@@ -1,4 +1,19 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 const ContentComponent = ({ headerContent, titlePage, data, contentPage }) => {
   return (
@@ -6,7 +21,9 @@ const ContentComponent = ({ headerContent, titlePage, data, contentPage }) => {
       <h2 className="text-[95px] text-gray-400  mb-2" style={{ fontFamily: 'MyFont' }}>
         {headerContent}
       </h2>
-      <h3 className="text-3xl font-bold tracking-widest mb-5" style={{ fontFamily: "MyFont3" }}>{titlePage}</h3>
+      <h3 className="text-3xl font-bold tracking-widest mb-5" style={{ fontFamily: "MyFont3" }}>
+        {titlePage}
+      </h3>
       <div className="flex justify-center text-center">
         <p
           className="mb-15 max-w-3xl text-gray-500 text-base"
@@ -16,11 +33,17 @@ const ContentComponent = ({ headerContent, titlePage, data, contentPage }) => {
         </p>
       </div>
 
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {data.map(item => (
-          <div
+          <motion.div
             key={item.id}
+            variants={itemVariants}
             className="cursor-pointer transition-transform hover:-translate-y-2 flex flex-col items-center"
             onClick={() => window.open(item.link, '_blank')}
           >
@@ -41,9 +64,9 @@ const ContentComponent = ({ headerContent, titlePage, data, contentPage }) => {
             >
               {item.title}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

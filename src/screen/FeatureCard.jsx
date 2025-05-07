@@ -5,13 +5,10 @@ export default function FeatureCard({
   title,
   saveText,
   features = [],
-  width = 469,
-  height = 563,
 }) {
   return (
     <div
-      className="bg-white rounded-2xl shadow-lg flex flex-col items-center p-8 m-2 transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-      style={{ width, height }}
+      className="bg-white rounded-2xl shadow-lg flex flex-col items-center p-6 sm:p-8 w-full max-w-[400px] m-2 transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
     >
       {/* Icon */}
       <img

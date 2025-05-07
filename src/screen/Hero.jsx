@@ -8,6 +8,7 @@ import { ShoppingCart, Share2 } from "lucide-react"
 
 const Hero = () => {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const headerRef = useRef(null)
   const buyNowRef = useRef(null)
   const viewDemosRef = useRef(null)
@@ -158,15 +159,76 @@ const Hero = () => {
           <img src={logo || "/placeholder.svg"} alt="logo" className="w-10 h-10" />
         </div>
         <div className="relative">
+          {/* Desktop: Hiện BUY NOW */}
           <button
             ref={buyNowRef}
-            className="relative text-black font-bold uppercase tracking-wider py-2 px-4 transition duration-300"
+            className="relative text-black font-bold uppercase tracking-wider py-2 px-4 transition duration-300 hidden md:inline-block"
           >
             BUY Now
             <span ref={underlineRef} className="absolute bottom-0 left-0 h-0.5 bg-black" style={{ width: "0" }}></span>
           </button>
+          {/* Mobile: Hiện icon menu */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 8h24M4 16h24M4 24h24" />
+            </svg>
+          </button>
         </div>
       </header>
+
+      {/* Off-canvas menu mobile */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50">
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-300"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          {/* Sidebar */}
+          <div
+            className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white shadow-2xl flex flex-col p-6 animate-slide-in-right"
+            style={{ minWidth: 280 }}
+          >
+            {/* Logo lớn */}
+            <div className="flex justify-center items-center mb-8 mt-2">
+              <img src={logo || "/placeholder.svg"} alt="logo" className="w-16 h-16" />
+            </div>
+            {/* Nút đóng */}
+            <button
+              className="absolute top-4 right-4 text-3xl text-black hover:text-red-500 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              &times;
+            </button>
+            {/* Menu items */}
+            <nav className="mt-2 flex flex-col gap-6">
+              {[
+                "Home",
+                "Discography",
+                "Artists",
+                "Videos",
+                "Blog",
+                "Pages",
+                "Shop",
+              ].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="font-bold uppercase text-lg text-gray-800 hover:text-[#ee2851] transition-colors tracking-wide"
+                  style={{ letterSpacing: 1 }}
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      )}
 
       {/* Fixed buttons on right side */}
       <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-2">
@@ -213,3 +275,18 @@ const Hero = () => {
 }
 
 export default Hero
+
+// Thêm animation cho menu trượt phải
+if (typeof window !== 'undefined') {
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes slide-in-right {
+      0% { transform: translateX(100%);}
+      100% { transform: translateX(0);}
+    }
+    .animate-slide-in-right {
+      animation: slide-in-right 0.3s cubic-bezier(0.4,0,0.2,1) both;
+    }
+  `;
+  document.head.appendChild(style);
+}
