@@ -1,26 +1,24 @@
-// src/component/DiscographyReleasePages.js
 import React, { useState } from "react";
 import ReleaseTabs from "./ReleaseTabs";
-import releaseListingData from "../data/releaseListingData";
 
-const DiscographyReleasePages = ({ data, headerTitle , pageTitle,contentTitle  }) => {
+const DiscographyReleasePages = ({ data, headerTitle, pageTitle, contentTitle, tab1Label, tab2Label, tab2Data }) => {
   const [activeTab, setActiveTab] = useState("tab1");
 
-  // Select data based on active tab
-  const displayData = activeTab === "tab1" ? data : releaseListingData;
+  // Chọn dữ liệu dựa trên tab đang active
+  const displayData = activeTab === "tab1" ? data : tab2Data;
 
   return (
-    <div className="w-full min-h-screen bg-white flex flex-col items-center py-8">
+    <div className="w-full min-h-screen mt-20 bg-white flex flex-col items-center py-8">
       <div>
         <h2
-          className="text-[95px] text-gray-400 font-bold text-center mb-2 italic"
+          className="text-[95px] text-gray-400  text-center mb-2 italic"
           style={{ fontFamily: "MyFont" }}
         >
           {headerTitle}
         </h2>
         <h3
           className="text-[35px] text-black text-center"
-          style={{fontFamily:"MyFont3"}}
+          style={{ fontFamily: "MyFont3" }}
         >
           {pageTitle}
         </h3>
@@ -28,8 +26,8 @@ const DiscographyReleasePages = ({ data, headerTitle , pageTitle,contentTitle  }
           {contentTitle}
         </p>
         <ReleaseTabs
-          tab1Label="Release Single Pages"
-          tab2Label="Release Listing"
+          tab1Label={tab1Label}
+          tab2Label={tab2Label}
           onTabChange={(tab) => setActiveTab(tab)}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -51,13 +49,18 @@ const DiscographyReleasePages = ({ data, headerTitle , pageTitle,contentTitle  }
                 />
               </div>
               <div
-                className="text-xl font-semibold mt-4 text-gray-800 text-center"
+                className="text-[18px] font-semibold mt-4 text-gray-800 text-center"
                 style={{ fontFamily: "MyFont2" }}
               >
                 {item.title}
               </div>
             </div>
           ))}
+        </div>
+        <div className="text-center mt-12">
+          <p className="text-gray-500  text-lg" >
+            and more...
+          </p>
         </div>
       </div>
     </div>

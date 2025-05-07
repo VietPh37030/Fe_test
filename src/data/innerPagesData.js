@@ -1,0 +1,66 @@
+const innerPagesData = [
+    {
+      id: 1,
+      title: 'About Us',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h36_33-450x289.jpg',
+      description: 'Learn more about who we are and what we do.',
+      link: 'https://example.com/about-us',
+    },
+    {
+      id: 2,
+      title: 'About the Band',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h37_17-450x289.jpg',
+      description: 'Discover the story behind the music and our band members.',
+      link: 'https://example.com/about-band',
+    },
+    {
+      id: 3,
+      title: 'About Me',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h37_29-450x289.jpg',
+      description: 'A personal introduction and background.',
+      link: 'https://example.com/about-me',
+    },
+    {
+      id: 4,
+      title: 'Our Team',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h37_54-450x289.jpg',
+      description: 'Meet the people behind the project.',
+      link: 'https://example.com/our-team',
+    },
+    {
+      id: 5,
+      title: 'What We Do',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h39_21-450x289.jpg',
+      description: 'An overview of our services and activities.',
+      link: 'https://example.com/what-we-do',
+    },
+    {
+      id: 6,
+      title: 'Get In Touch',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h40_05-450x289.jpg',
+      description: 'Ways to reach out and contact us.',
+      link: 'https://example.com/get-in-touch',
+    },
+    {
+      id: 7,
+      title: 'Contact Us',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h37_54-450x289.jpg',
+      description: 'Send us a message or get support.',
+      link: 'https://example.com/contact-us',
+    },
+    {
+      id: 8,
+      title: 'Coming Soon',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h38_12-450x289.jpg',
+      description: 'Stay tuned for something awesome.',
+      link: 'https://example.com/coming-soon',
+    },
+    {
+      id: 9,
+      title: 'Maintenance',
+      image: 'https://preview.wolfthemes.store/app/uploads/sites/31/2019/11/2019-11-28_13h39_08-450x289.jpg',
+      description: 'We’ll be back soon. The site is under maintenance.',
+      link: 'https://example.com/maintenance',
+    },
+  ];
+  export default innerPagesData;
